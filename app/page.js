@@ -4,10 +4,10 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 const navLinks = [
-  { href: '#hero', label: 'Home' },
-  { href: '#work', label: 'Work' },
-  { href: '#about', label: 'About' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#hero', label: 'Home', external: false },
+  { href: '', label: 'Work', external: true },
+  { href: '', label: 'About', external: true },
+  { href: '', label: 'Contact', external: true },
 ];
 
 const works = [
@@ -138,10 +138,11 @@ export default function HomePage() {
         </div>
         <button
           type="button"
-          className="menu-toggle"
+          className={`menu-toggle${isNavOpen ? ' active' : ''}`}
           onClick={toggleNav}
           aria-expanded={isNavOpen}
           aria-controls="primary-navigation"
+          aria-label={isNavOpen ? 'Close navigation' : 'Open navigation'}
         >
           <span />
           <span />
@@ -161,9 +162,14 @@ export default function HomePage() {
             ×
           </button>
           <ul>
-            {navLinks.map(({ href, label }) => (
+            {navLinks.map(({ href, label, external }) => (
               <li key={href}>
-                <a href={href} onClick={closeNav}>
+                <a
+                  href={href}
+                  onClick={closeNav}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noreferrer' : undefined}
+                >
                   {label}
                 </a>
               </li>
@@ -174,7 +180,7 @@ export default function HomePage() {
 
       <main>
         <section id="hero" className="hero">
-          <div className="hero-content">
+          <div className="section-inner hero-inner">
             <h1>
               I design minimum viable SaaS products that deliver maximum impact.
             </h1>
@@ -188,43 +194,61 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="work" className="work">
-          <div className="section-header">
-            <h2>Selected Works</h2>
-          </div>
-          <div className="work-grid">
-            {works.map((work) => (
-              <article className="work-card" key={work.title}>
-                <a href={work.href} target="_blank" rel="noreferrer" aria-label={`${work.title} case study`}>
-                  <Image
-                    src={work.image}
-                    alt={work.alt}
-                    width={800}
-                    height={600}
-                    sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 25vw"
-                    className="work-card-image"
-                  />
-                </a>
-              <h3>{work.title}</h3>
-              <p>{work.description}</p>
-            </article>
-          ))}
+        <section id="work" className="section work">
+          <div className="section-inner">
+            <div className="section-header">
+              <p className="section-kicker">Selected Works</p>
+            </div>
+            <div className="work-grid">
+              {works.map((work) => (
+                <article className="work-card" key={work.title}>
+                  <a
+                    className="work-card-media"
+                    href={work.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${work.title} case study`}
+                  >
+                    <Image
+                      src={work.image}
+                      alt={work.alt}
+                      width={1200}
+                      height={900}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 520px"
+                      className="work-card-image"
+                    />
+                  </a>
+                  <div className="work-card-copy">
+                    <a
+                      href={work.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="work-card-title"
+                    >
+                      {work.title}
+                    </a>
+                    <p>{work.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="highlight">
-          <div className="section-header">
+        <section className="section section-light highlight">
+          <div className="section-inner">
             <h2>10+ years successfully launching 0-1 products for high-impact product teams.</h2>
           </div>
         </section>
 
-        <section className="stats" aria-label="Experience statistics">
-          <div className="stats-grid">
-            <div className="stat">
-              <span className="stat-number">24+</span>
-              <span className="stat-label">MVP Products Shipped</span>
-            </div>
-            <div className="stat">
+        <section className="section stats" aria-label="Experience statistics">
+          <div className="section-inner">
+            <div className="stats-grid">
+              <div className="stat">
+                <span className="stat-number">24+</span>
+                <span className="stat-label">MVP Products Shipped</span>
+              </div>
+              <div className="stat">
               <span className="stat-number">17+</span>
               <span className="stat-label">Industries Serviced</span>
             </div>
@@ -244,88 +268,89 @@ export default function HomePage() {
                 ))}
               </ul>
             </div>
+            </div>
           </div>
         </section>
 
-        <section id="about" className="about">
-          <div className="section-header">
-            <h2>Pragmatic, collaborative product design leadership</h2>
-          </div>
-          <div className="about-content">
-            <p>
-              Michael Pons is a dynamic and hands-on product design leader with a track record of guiding early-stage teams
-              from zero to one. He pairs research-driven insight with rapid prototyping to help founders and cross-functional
-              partners align, ship, and iterate faster.
-            </p>
-            <p>
-              His work spans data-rich SaaS experiences, AI-powered workflows, and connected hardware ecosystems. By staying
-              close to customers and the code, Michael ensures every release balances business goals with meaningful user
-              impact.
-            </p>
-          </div>
-        </section>
-
-        <section className="clients" aria-labelledby="clients-title">
-          <div className="section-header">
-            <h2 id="clients-title">Featured Clients</h2>
-          </div>
-          <div className="clients-logos">
-            {clients.map((client) => (
-              <Image
-                key={client.name}
-                src={client.image}
-                alt={client.name}
-                width={200}
-                height={100}
-                sizes="(max-width: 600px) 45vw, (max-width: 1100px) 25vw, 200px"
-                className="client-logo"
-              />
-            ))}
+        <section className="section clients" aria-labelledby="clients-title">
+          <div className="section-inner">
+            <div className="section-header">
+              <p id="clients-title" className="section-kicker">
+                Featured Clients
+              </p>
+            </div>
+            <div className="clients-marquee" role="presentation">
+              <div className="clients-track">
+                {[...clients, ...clients].map((client, index) => (
+                  <div
+                    className="client-logo-wrapper"
+                    key={`${client.name}-${index}`}
+                    aria-hidden={index >= clients.length}
+                  >
+                    <Image
+                      src={client.image}
+                      alt={client.name}
+                      width={220}
+                      height={110}
+                      sizes="(max-width: 640px) 40vw, 180px"
+                      className="client-logo"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <ul className="sr-only">
+              {clients.map((client) => (
+                <li key={client.name}>{client.name}</li>
+              ))}
+            </ul>
           </div>
         </section>
       </main>
 
       <footer id="contact" className="site-footer">
-        <div className="footer-cta">
-          <h2>
-            <a href="https://michaelpons.com/contact/" target="_blank" rel="noreferrer">
-              Let’s Discuss Your Project!
-            </a>
-          </h2>
+        <div className="section-inner">
+          <div className="footer-cta">
+            <h2>
+              <a href="https://michaelpons.com/contact/" target="_blank" rel="noreferrer">
+                Let’s Discuss Your Project!
+              </a>
+            </h2>
+          </div>
+          <div className="footer-columns">
+            <div>
+              <h3>Social</h3>
+              <ul>
+                <li>
+                  <a href="https://www.linkedin.com/in/michaelpons" target="_blank" rel="noreferrer">
+                    LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a href="https://twitter.com/uxallday" target="_blank" rel="noreferrer">
+                    X
+                  </a>
+                </li>
+                <li>
+                  <a href="https://dribbble.com/pons" target="_blank" rel="noreferrer">
+                    Dribbble
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3>Email</h3>
+              <a href="mailto:nycuxui@gmail.com">nycuxui@gmail.com</a>
+            </div>
+            <div>
+              <h3>Lets chat</h3>
+              <a href="https://calendly.com/michaelpons/intro" target="_blank" rel="noreferrer">
+                Book an intro call
+              </a>
+            </div>
+          </div>
+          <p className="copyright">© 2025 Michael Pons. All Rights Reserved.</p>
         </div>
-        <div className="footer-columns">
-          <div>
-            <h3>Social</h3>
-            <ul>
-              <li>
-                <a href="https://www.linkedin.com/in/michaelpons" target="_blank" rel="noreferrer">
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <a href="https://twitter.com/uxallday" target="_blank" rel="noreferrer">
-                  X (Twitter)
-                </a>
-              </li>
-              <li>
-                <a href="https://dribbble.com/pons" target="_blank" rel="noreferrer">
-                  Dribbble
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3>Email</h3>
-            <a href="mailto:nycuxui@gmail.com">nycuxui@gmail.com</a>
-          </div>
-          <div>
-            <h3>Let’s chat</h3>
-            <a href="https://calendly.com/michaelpons/intro" target="_blank" rel="noreferrer">
-              Book an intro call
-            </a>
-          </div>
-        </div>
-        <p className="copyright">© 2025 Michael Pons. All Rights Reserved.</p>
       </footer>
     </>
   );
