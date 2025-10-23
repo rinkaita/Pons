@@ -1,6 +1,7 @@
 :root {
   --bg-white: #ffffff;
   --bg-light: #f8f8f8;
+  --bg-dark: #111111;
   --text-dark: #555555;
   --text-muted: #6a6a6a;
   --line-color: #c7c7c7;
@@ -24,6 +25,7 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--text-dark);
   background: var(--bg-white);
+  background-color: var(--bg-white);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -37,7 +39,7 @@ a {
 }
 
 a:hover {
-  color: #1f1f1f;
+  color: var(--accent);
 }
 
 img {
@@ -87,7 +89,7 @@ main {
   display: block;
   width: 28px;
   height: 2px;
-  background: #333;
+  background: currentColor;
   margin: 5px 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -104,8 +106,8 @@ main {
   position: fixed;
   inset: 0;
   z-index: 1200;
-  background: rgba(24, 24, 24, 0.95);
-  color: #ffffff;
+  background: rgba(17, 17, 17, 0.94);
+  color: var(--bg-white);
   display: flex;
   flex-direction: column;
   align-items: center;
