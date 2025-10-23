@@ -138,10 +138,11 @@ export default function HomePage() {
         </div>
         <button
           type="button"
-          className="menu-toggle"
+          className={`menu-toggle${isNavOpen ? ' active' : ''}`}
           onClick={toggleNav}
           aria-expanded={isNavOpen}
           aria-controls="primary-navigation"
+          aria-label={isNavOpen ? 'Close navigation' : 'Open navigation'}
         >
           <span />
           <span />
@@ -188,7 +189,7 @@ export default function HomePage() {
               to de-risk their product strategy.
             </p>
             <a className="button" href="#work">
-              See Case Sudies
+              See Case Studies
             </a>
           </div>
         </section>
