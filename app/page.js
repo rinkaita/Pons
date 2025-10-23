@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react';
 
 const navLinks = [
   { href: '#hero', label: 'Home', external: false },
-  { href: 'https://michaelpons.com/work/', label: 'Work', external: true },
-  { href: 'https://michaelpons.com/about/', label: 'About', external: true },
-  { href: 'https://michaelpons.com/contact/', label: 'Contact', external: true },
+  { href: '', label: 'Work', external: true },
+  { href: '', label: 'About', external: true },
+  { href: '', label: 'Contact', external: true },
 ];
 
 const works = [
