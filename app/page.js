@@ -148,36 +148,35 @@ export default function HomePage() {
           <span />
           <span />
         </button>
-      </header>
-
-      <nav
-        id="primary-navigation"
-        className={`site-nav${isNavOpen ? ' open' : ''}`}
-        aria-label="Primary"
-      >
-        <button
-          type="button"
-          className="menu-close"
-          onClick={closeNav}
-          aria-label="Close navigation"
+        <nav
+          id="primary-navigation"
+          className={`site-nav${isNavOpen ? ' open' : ''}`}
+          aria-label="Primary"
         >
-          ×
-        </button>
-        <ul>
-          {navLinks.map(({ href, label, external }) => (
-            <li key={href}>
-              <a
-                href={href}
-                onClick={closeNav}
-                target={external ? '_blank' : undefined}
-                rel={external ? 'noreferrer' : undefined}
-              >
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+          <button
+            type="button"
+            className="menu-close"
+            onClick={closeNav}
+            aria-label="Close navigation"
+          >
+            ×
+          </button>
+          <ul>
+            {navLinks.map(({ href, label, external }) => (
+              <li key={href}>
+                <a
+                  href={href}
+                  onClick={closeNav}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noreferrer' : undefined}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </header>
 
       <main>
         <section id="hero" className="hero">
