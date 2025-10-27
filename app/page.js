@@ -18,14 +18,16 @@ const works = [
     href: 'https://michaelpons.com/portfolio/eino-ai',
     image: 'https://michaelpons.com/wp-content/uploads/2024/10/Eino_AI_Platform_3.jpg',
     alt: 'Eino AI platform',
+    external: true,
   },
   {
     title: 'Safe Display',
     description:
       'Empowering data-driven decision making through physical distancing in the workplace.',
-    href: 'https://michaelpons.com/portfolio/safe-display/',
+    href: '/portfolio/safe-display',
     image: 'https://michaelpons.com/wp-content/uploads/2024/01/safe_portfolio_cover-1.jpg',
     alt: 'Safe Display',
+    external: false,
   },
   {
     title: 'Sensei',
@@ -34,6 +36,7 @@ const works = [
     href: 'https://michaelpons.com/portfolio/sensei/',
     image: 'https://michaelpons.com/wp-content/uploads/2024/02/Sensei.png',
     alt: 'Sensei',
+    external: true,
   },
   {
     title: 'Link NYC',
@@ -41,6 +44,7 @@ const works = [
     href: 'https://michaelpons.com/portfolio/linknyc',
     image: 'https://michaelpons.com/wp-content/uploads/2024/01/LinkNYC_tablet_ui.jpeg',
     alt: 'LinkNYC',
+    external: true,
   },
 ];
 
@@ -205,8 +209,8 @@ export default function HomePage() {
                   <a
                     className="work-card-media"
                     href={work.href}
-                    target="_blank"
-                    rel="noreferrer"
+                    target={work.external ? '_blank' : undefined}
+                    rel={work.external ? 'noreferrer' : undefined}
                     aria-label={`${work.title} case study`}
                   >
                     <Image
@@ -221,8 +225,8 @@ export default function HomePage() {
                   <div className="work-card-copy">
                     <a
                       href={work.href}
-                      target="_blank"
-                      rel="noreferrer"
+                      target={work.external ? '_blank' : undefined}
+                      rel={work.external ? 'noreferrer' : undefined}
                       className="work-card-title"
                     >
                       {work.title}
