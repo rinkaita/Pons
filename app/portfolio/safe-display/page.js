@@ -49,6 +49,36 @@ const processSteps = [
   },
 ];
 
+const signageStates = [
+  {
+    title: 'Green — Safe to enter',
+    description: 'Space is well below threshold and cleaning schedules are up to date.',
+  },
+  {
+    title: 'Yellow — Nearing capacity',
+    description: 'Employees are prompted to wait or find an alternate room with lower occupancy.',
+  },
+  {
+    title: 'Red — At capacity',
+    description: 'Automated alerts notify facilities teams and trigger follow-up cleaning workflows.',
+  },
+];
+
+const dataFlows = [
+  {
+    title: 'Sensor coverage audit',
+    description: 'Mapped badge events and infrared sensing to validate people counting accuracy across lobbies, hallways, and conference rooms.',
+  },
+  {
+    title: 'Policy mapping',
+    description: 'Codified each municipality’s distancing and cleaning rules into reusable configurations that could be applied per building.',
+  },
+  {
+    title: 'Alert orchestration',
+    description: 'Documented how signage, in-app alerts, and email reports should react when capacity or cleaning thresholds were hit.',
+  },
+];
+
 export const metadata = {
   title: 'Safe Display Case Study | Michael Pons',
   description:
@@ -142,11 +172,11 @@ export default function SafeDisplayCaseStudyPage() {
           </div>
         </section>
 
-        <section className="case-section">
-          <div className="section-inner case-section-inner">
-            <div className="case-section-header">
-              <p className="case-kicker">The Challenge</p>
-              <h2>Translate evolving regulations into calm, clear guidance.</h2>
+          <section className="case-section">
+            <div className="section-inner case-section-inner">
+              <div className="case-section-header">
+                <p className="case-kicker">The Challenge</p>
+                <h2>Translate evolving regulations into calm, clear guidance.</h2>
             </div>
             <div className="case-split">
               <div>
@@ -163,15 +193,37 @@ export default function SafeDisplayCaseStudyPage() {
                   demonstrating compliance for executives, HR, and legal stakeholders.
                 </p>
               </div>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section className="case-section">
-          <div className="section-inner case-section-inner">
-            <div className="case-section-header">
-              <p className="case-kicker">Process</p>
-              <h2>Designing at the speed of an emergency response.</h2>
+          <section className="case-section case-section-dark">
+            <div className="section-inner case-section-inner">
+              <div className="case-section-header">
+                <p className="case-kicker">Solution</p>
+                <h2>Designing a language employees could trust.</h2>
+                <p>
+                  We distilled complex occupancy math into a simple set of signage states that could be recognized at a glance
+                  from across the lobby. The same signals mirrored the dashboard so facilities, HR, and executives were aligned
+                  on what action to take.
+                </p>
+              </div>
+              <div className="case-card-grid">
+                {signageStates.map((state) => (
+                  <div key={state.title} className="case-card">
+                    <h3>{state.title}</h3>
+                    <p>{state.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="case-section">
+            <div className="section-inner case-section-inner">
+              <div className="case-section-header">
+                <p className="case-kicker">Process</p>
+                <h2>Designing at the speed of an emergency response.</h2>
             </div>
             <div className="case-timeline">
               {processSteps.map((step) => (
@@ -184,8 +236,29 @@ export default function SafeDisplayCaseStudyPage() {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
+            </div>
+          </section>
+
+          <section className="case-section">
+            <div className="section-inner case-section-inner">
+              <div className="case-section-header">
+                <p className="case-kicker">Data you can stand behind</p>
+                <h2>Ensuring every signal was accurate and defensible.</h2>
+                <p>
+                  Data credibility mattered more than ever. We mapped how each sensor, badge reader, and policy update would
+                  flow into Safe Display so customer teams knew what to expect before launch.
+                </p>
+              </div>
+              <div className="case-card-grid">
+                {dataFlows.map((item) => (
+                  <div key={item.title} className="case-card">
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
 
         <section className="case-section case-section-image">
           <div className="section-inner case-section-inner">
